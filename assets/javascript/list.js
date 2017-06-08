@@ -146,9 +146,25 @@ $(document).ready (function() {
         console.log(this);
     });
 
-    
-    $("#addButton").on("click", function(){
-        $(".newProduct").append(".productSelected");
+    $("#timer1").on("click", function(){
+        var timeLeft = 5;
+        var timerId = setInterval(countdown, 1000);
+        console.log(timeLeft);
+
+        function countdown() {
+            if (timeLeft == 0) {
+                clearTimeout(timerId);
+                $(document).on("click", ".proImage", function(){
+                    $("#listItems").append(this);
+                    console.log(this);
+                });
+
+            } else {
+                span = document.getElementById("timer");
+                span.innerHTML = timeLeft;
+                timeLeft--;
+            }
+        }
     })
 
 
