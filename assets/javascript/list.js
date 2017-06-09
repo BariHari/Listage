@@ -143,6 +143,7 @@ $(document).ready (function() {
 
         $(".productSelected").append(this);
         $('#addButton').removeClass('hidden');
+        // variable to store 'this'
         var that = this;
         //console.log(this);
 
@@ -154,10 +155,6 @@ $(document).ready (function() {
                 if (timeLeft === 0) {
                     $(".productSelected").remove();
                     clearTimeout(timerId);
-                    //$(document).on("click", ".proImage", function(){
-                    var image = $("<img>");
-                    //console.log($(this).data("selected"));
-                    image.attr("src", that);
                     $("#listItems").append(that);
                     //console.log(this);
 
