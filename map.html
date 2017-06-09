@@ -92,7 +92,7 @@
           var service = new google.maps.places.PlacesService(map);
           service.nearbySearch({
             location: pyrmont,
-            radius: 1000,
+            radius: 10 00,
             type: ['grocery_or_supermarket']
           }, callback);
         }
@@ -121,6 +121,7 @@
 
     <body>
       <div id="map"></div>
+      <h1>Maps</h1>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdI1jD1TLTy0vLHoo8TZL1YWVqqx09G6w&libraries=places&callback=initMap" async defer></script>
 
 
