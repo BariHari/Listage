@@ -90,6 +90,12 @@ $(document).ready (function() {
             event.preventDefault();
             console.log(this);
             $('#listbody').removeClass('hide');
+
+            //Automatically scrolls
+            $('html,body').animate({
+            scrollTop: $(".searchbarscroll").offset().top},
+            'slow');
+
     });
 
     // On click function for the search button
@@ -153,28 +159,32 @@ $(document).ready (function() {
     // When the user clicks on a product options 1, it will append to the productSelected class
     $(document).on("click", ".divproduct", function(){
 
+
         //Automatically scrolls
         $('html,body').animate({
         scrollTop: $(".scrollsection").offset().top},
         'slow');
         
-
+        //The drop down buttons with the times will appear
         $('#dropdownbuttondisplay').removeClass('dropdownbuttonhide');
+        //The product that was selected will append to the section where the user picks the time
+        //"this" is referring to the .divproduct/the picture that was selected
         $(".productSelected").append(this);
+        //"What do you need?" title will appear
         $('#selectedOptionTitle').removeClass('hideSelected');
         // variable to store 'this'
         var that = this;
         //console.log(this);
 
         $("#timer1").on("click", function(){
-            var timeLeft = 5;
+            var timeLeft = 3;
             var timerId = setInterval(countdown, 1000);
 
             function countdown() {
                 if (timeLeft === 0) {
-                    $(".productSelected").remove();
                     clearTimeout(timerId);
                     $("#listItems").append(that);
+                    $('#addedGroceryTitle').removeClass('hideGrocery');
                     //console.log(this);
 
                     //});
@@ -187,6 +197,57 @@ $(document).ready (function() {
                 }
             }
         })
+
+
+        $("#timer2").on("click", function(){
+            var timeLeft = 7;
+            var timerId = setInterval(countdown, 1000);
+
+            function countdown() {
+                if (timeLeft === 0) {
+                    
+                    clearTimeout(timerId);
+                    $("#listItems").append(that);
+                    $('#addedGroceryTitle').removeClass('hideGrocery');
+                    //console.log(this);
+
+                    //});
+
+                } else {
+                    span = document.getElementById("timer");
+                    timeLeft--;
+                    span.innerHTML = timeLeft;
+                    console.log(timeLeft);
+                }
+            }
+        })
+
+
+
+        $("#timer3").on("click", function(){
+            var timeLeft = 10;
+            var timerId = setInterval(countdown, 1000);
+
+            function countdown() {
+                if (timeLeft === 0) {
+                    
+                    clearTimeout(timerId);
+                    $("#listItems").append(that);
+                    $('#addedGroceryTitle').removeClass('hideGrocery');
+                    //console.log(this);
+
+                    //});
+
+                } else {
+                    span = document.getElementById("timer");
+                    timeLeft--;
+                    span.innerHTML = timeLeft;
+                    console.log(timeLeft);
+                }
+            }
+        })
+
+
     });
 
 

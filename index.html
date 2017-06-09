@@ -54,7 +54,7 @@
 
     <!-- search -->
     <div id="listbody" class="hide">
-    <div class="container">
+    <div class="searchbarscroll container">
       <div class="sw">
         <form>
           <input type="search" class="userInput" placeholder="Search for product..." />
@@ -98,6 +98,18 @@
 
                 <div class="col s12 m6 addTime">
                   <p class="light"></p>
+                        <div id="dropdownbuttondisplay" class="dropdownbuttonhide">
+                            <a class='dropdown-button btn' href='#' data-activates='dropdown1'>When?</a>
+
+                              <!-- Dropdown Structure -->
+                              <p><span id="timer"></span> seconds left!</p>
+                              <br>
+                              <ul id='dropdown1' class='dropdown dropdown-content'>
+                                <li><a id="timer1" href="#!">Three days</a></li>
+                                <li><a id="timer2" href="#!">Two weeks</a></li>
+                                <li><a id="timer3" href="#!">One month</a></li>
+                              </ul>
+                            </div>
                 </div>
 
                 <br>
@@ -106,33 +118,25 @@
                 <!-- Append List -->
                 <div class="container">
                   <div class="section">
+                          <div id="addedGroceryTitle" class="hideGrocery row">
+                              <div class="col s12"><h5>GroceryList</h5></div>
+                          </div>
                     <div class="row">
-                    <div id="listItems">
-                      <div class="col s12 m4 newProduct">
-                        <p class="light"></p>
-                                <div id="dropdownbuttondisplay" class="dropdownbuttonhide">
-                                  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>When?</a>
+                      <div id="listItems">
+                        <div class="col s12 m4 newProduct">
+                          <p class="light"></p>
+                                  
+                        </div>
 
-                                    <!-- Dropdown Structure -->
-                                    <p><span id="timer"></span> seconds left!</p>
-                                    <br>
-                                    <ul id='dropdown1' class='dropdown dropdown-content'>
-                                      <li><a id="timer1" href="#!">Three days</a></li>
-                                      <li><a id="timer2" href="#!">Two weeks</a></li>
-                                      <li><a id="timer3" href="#!">One month</a></li>
-                                    </ul>
-                                  </div>
+                        <div class="col s12 m4 newProduct">
+                          <p class="light"></p>
+                        </div>
+
+                        <div class="col s12 m4 newProduct">
+                          <p class="light"></p>
+                        </div>
+
                       </div>
-
-                      <div class="col s12 m4 newProduct">
-                        <p class="light"></p>
-                      </div>
-
-                      <div class="col s12 m4 newProduct">
-                        <p class="light"></p>
-                      </div>
-
-                    </div>
                     </div>
 
 
