@@ -43,6 +43,15 @@
 	display: none;
 }
 
+#addedGroceryTitle {
+	text-align: center;
+	color: #2196F3;
+}
+
+.hideGrocery {
+	display: none;
+}
+
 
 
 
