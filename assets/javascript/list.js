@@ -95,6 +95,11 @@ $(document).ready (function() {
     // On click function for the search button
     $(".searchForm").on("click", function(){
 
+        //Automatically scrolls
+        $('html,body').animate({
+        scrollTop: $("#listItems").offset().top},
+        'slow');
+
         // Prevent default browser settings
         event.preventDefault();
 
@@ -112,6 +117,7 @@ $(document).ready (function() {
         var queryURLWiki = "https://cors-bcs.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&prop=images&titles=" + productOptionsWiki;
         console.log(productOptionsWiki);
         console.log(queryURLWiki);
+
 
         // Pulling AJAX request from Walmart API
         $.ajax({
@@ -135,6 +141,7 @@ $(document).ready (function() {
             console.log(response);
 
 
+
             /*// Transfer content to HTML
             $(".productOptions1").html("<img src=" + "'" + response.query.pages[7089].images["0"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);
             $(".productOptions2").html("<img src=" + "'" + response.query.pages[7089].images["1"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);
@@ -145,6 +152,12 @@ $(document).ready (function() {
 
     // When the user clicks on a product options 1, it will append to the productSelected class
     $(document).on("click", ".divproduct", function(){
+
+        //Automatically scrolls
+        $('html,body').animate({
+        scrollTop: $(".scrollsection").offset().top},
+        'slow');
+        
 
         $('#dropdownbuttondisplay').removeClass('dropdownbuttonhide');
         $(".productSelected").append(this);
