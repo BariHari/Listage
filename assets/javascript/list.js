@@ -6,7 +6,7 @@
 // on click of search button on user input form
     // Get user input
     // Display searched items in "Aopend: Products"
-// Enable scroll arrows
+    // Enable scroll arrows
 
 
 // on click of appended product search item
@@ -119,9 +119,9 @@ $(document).ready (function() {
             console.log(response);
 
             // Transfer content to HTML
-            $(".productOptions1").html("<img src=" + "'" + response.items["0"].mediumImage + "'class='proImage'" + "<br>" + response.items["0"].name + ">" );
-            $(".productOptions2").html("<img src=" + "'" + response.items["1"].mediumImage + "'class='proImage'" + "<br>" + response.items["1"].name + ">" );
-            $(".productOptions3").html("<img src=" + "'" + response.items["3"].mediumImage + "'class='proImage'" + "<br>" + response.items["2"].name + ">" );
+            $(".productOptions1").html("<div class='divproduct'> <img src=" + response.items["0"].mediumImage + " class = proImage data-selected = " + response.items["0"].mediumImage + ">" + "<br>" + response.items["0"].name + "</div>");
+            $(".productOptions2").html("<div class='divproduct'> <img src=" + response.items["1"].mediumImage + " class = proImage data-selected = " + response.items["1"].mediumImage + ">" + "<br>" + response.items["1"].name + "</div>");
+            $(".productOptions3").html("<div class='divproduct'> <img src=" + response.items["2"].mediumImage + " class = proImage data-selected = " + response.items["2"].mediumImage + ">" + "<br>" + response.items["2"].name + "</div>");
         });
 
         // Pulling AJAX request
@@ -137,35 +137,38 @@ $(document).ready (function() {
 
         });
     });
-    
+
     // When the user clicks on a product options 1, it will append to the productSelected class
-    $(document).on("click", ".proImage", function(){
+    $(document).on("click", ".divproduct", function(){
 
         $(".productSelected").append(this);
         $('#addButton').removeClass('hidden');
-        console.log(this);
-    });
+        // variable to store 'this'
+        var that = this;
+        //console.log(this);
 
-    $("#timer1").on("click", function(){
-        var timeLeft = 5;
-        var timerId = setInterval(countdown, 1000);
-        console.log(timeLeft);
+        $("#timer1").on("click", function(){
+            var timeLeft = 5;
+            var timerId = setInterval(countdown, 1000);
 
-        function countdown() {
-            if (timeLeft == 0) {
-                clearTimeout(timerId);
-                $(document).on("click", ".proImage", function(){
-                    $("#listItems").append(this);
-                    console.log(this);
-                });
+            function countdown() {
+                if (timeLeft === 0) {
+                    $(".productSelected").remove();
+                    clearTimeout(timerId);
+                    $("#listItems").append(that);
+                    //console.log(this);
 
-            } else {
-                span = document.getElementById("timer");
-                span.innerHTML = timeLeft;
-                timeLeft--;
+                    //});
+
+                } else {
+                    span = document.getElementById("timer");
+                    timeLeft--;
+                    span.innerHTML = timeLeft;
+                    console.log(timeLeft);
+                }
             }
-        }
-    })
+        })
+    });
 
 
 });
