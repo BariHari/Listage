@@ -47,85 +47,98 @@
         <br><br>
       </div>
     </div>
-    <h1>Maps</h1>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script>
 
-    <div id="map_div" style="height: 400px;"></div>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script>
 
-    <script type="text/javascript">
-      /*
-       * declare map as a global variable
-       */
-      var map;
+    <!-- begin -->
 
-      /*
-       * use google maps api built-in mechanism to attach dom events
-       */
-      google.maps.event.addDomListener(window, "load", function() {
+    <head>
+      <title>Place searches</title>
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+      <meta charset="utf-8">
+      <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
 
-        /*
-         * create map
-         */
-        var map = new google.maps.Map(document.getElementById("map_div"), {
-          center: new google.maps.LatLng(33.808678, -117.918921),
-          zoom: 14,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
+        #map {
+          height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
 
-        /*
-         * create infowindow (which will be used by markers)
-         */
-        var infoWindow = new google.maps.InfoWindow();
+        html,
+        body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+      </style>
+      <script>
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+        var map;
+        var infowindow;
 
-        /*
-         * marker creater function (acts as a closure for html parameter)
-         */
-        function createMarker(options, html) {
-          var marker = new google.maps.Marker(options);
-          if (html) {
-            google.maps.event.addListener(marker, "click", function() {
-              infoWindow.setContent(html);
-              infoWindow.open(options.map, this);
-            });
-          }
-          return marker;
+        function initMap() {
+          var pyrmont = {
+            lat: 28.538335,
+            lng: -81.379236
+          };
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: pyrmont,
+            zoom: 15
+          });
+          infowindow = new google.maps.InfoWindow();
+          var service = new google.maps.places.PlacesService(map);
+          service.nearbySearch({
+            location: pyrmont,
+            radius: 1000,
+            type: ['grocery_or_supermarket']
+          }, callback);
         }
 
-        /*
-         * add markers to map
-         */
-        var marker0 = createMarker({
-          position: new google.maps.LatLng(33.808678, -117.918921),
-          map: map,
-          icon: "http://1.bp.blogspot.com/_GZzKwf6g1o8/S6xwK6CSghI/AAAAAAAAA98/_iA3r4Ehclk/s1600/marker-green.png"
-        }, "<h1>Marker 0</h1><p>This is the home marker.</p>");
+        function callback(results, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+              createMarker(results[i]);
+            }
+          }
+        }
 
-        var marker1 = createMarker({
-          position: new google.maps.LatLng(33.818038, -117.928492),
-          map: map
-        }, "<h1>Marker 1</h1><p>This is marker 1</p>");
+        function createMarker(place) {
+          var placeLoc = place.geometry.location;
+          var marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+          });
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent(place.name);
+            infowindow.open(map, this);
+          });
+        }
+      </script>
+    </head>
 
-        var marker2 = createMarker({
-          position: new google.maps.LatLng(33.803333, -117.915278),
-          map: map
-        }, "<h1>Marker 2</h1><p>This is marker 2</p>");
-      });
-    </script>
+    <body>
+      <div id="map"></div>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdI1jD1TLTy0vLHoo8TZL1YWVqqx09G6w&libraries=places&callback=initMap" async defer></script>
 
 
-    <!--  Scripts-->
 
 
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="assets/javascript/materialize.js"></script>
-    <script src="assets/javascript/init.js"></script>
-    <!--
+      <!--  Scripts-->
+
+
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="assets/javascript/materialize.js"></script>
+      <script src="assets/javascript/init.js"></script>
+      <!--
 <script type="text/javascript" src="assets/javascript/list.js"></script>
 -->
-    <script type="text/javascript" src="assets/javascript/map.js"></script>
+      <script type="text/javascript" src="assets/javascript/map.js"></script>
 
-    </script>
+      </script>
 
-  </body>
+    </body>
 
 </html>
