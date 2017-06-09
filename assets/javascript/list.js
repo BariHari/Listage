@@ -48,8 +48,6 @@
     // class = addTime (the amount of time the user selected)
     // class = newProduct (when a new product is added, we prepend it to the list)
 
-// IDS:
-    // ids suck so were sticking to classes
 
 //----------------------------------------------------------------------------------------------------------------------
 
