@@ -119,9 +119,9 @@ $(document).ready (function() {
             console.log(response);
 
             // Transfer content to HTML
-            $(".productOptions1").html("<img src=" + response.items["0"].mediumImage + " class = proImage data-selected = " + response.items["0"].mediumImage + ">" + "<br>" + response.items["0"].name + "' data-selected = 'item'");
-            $(".productOptions2").html("<img src=" + response.items["1"].mediumImage + " class = proImage data-selected = " + response.items["1"].mediumImage + ">" + "<br>" + response.items["1"].name + "' data-selected = 'item'");
-            $(".productOptions3").html("<img src=" + response.items["2"].mediumImage + " class = proImage data-selected = " + response.items["2"].mediumImage + ">" + "<br>" + response.items["2"].name + "' data-selected = 'item'");
+            $(".productOptions1").html("<div class='divproduct'> <img src=" + response.items["0"].mediumImage + " class = proImage data-selected = " + response.items["0"].mediumImage + ">" + "<br>" + response.items["0"].name + "</div>");
+            $(".productOptions2").html("<div class='divproduct'> <img src=" + response.items["1"].mediumImage + " class = proImage data-selected = " + response.items["1"].mediumImage + ">" + "<br>" + response.items["1"].name + "</div>");
+            $(".productOptions3").html("<div class='divproduct'> <img src=" + response.items["2"].mediumImage + " class = proImage data-selected = " + response.items["2"].mediumImage + ">" + "<br>" + response.items["2"].name + "</div>");
         });
 
         // Pulling AJAX request
@@ -139,11 +139,11 @@ $(document).ready (function() {
     });
 
     // When the user clicks on a product options 1, it will append to the productSelected class
-    $(document).on("click", ".proImage", function(){
+    $(document).on("click", ".divproduct", function(){
 
         $(".productSelected").append(this);
         $('#addButton').removeClass('hidden');
-        var that = $(this).data("selected");
+        var that = this;
         //console.log(this);
 
         $("#timer1").on("click", function(){
@@ -158,7 +158,7 @@ $(document).ready (function() {
                     var image = $("<img>");
                     //console.log($(this).data("selected"));
                     image.attr("src", that);
-                    $("#listItems").append(image);
+                    $("#listItems").append(that);
                     //console.log(this);
 
                     //});
