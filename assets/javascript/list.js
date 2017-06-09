@@ -97,6 +97,9 @@ $(document).ready (function() {
 
         // Prevent default browser settings
         event.preventDefault();
+
+        
+
         //console.log("search button working");
 
         // Creating variables to pull the query url from the user-input class
@@ -122,11 +125,15 @@ $(document).ready (function() {
             $(".productOptions3").html("<div class='divproduct'> <img src=" + response.items["2"].mediumImage + " class = proImage data-selected = " + response.items["2"].mediumImage + ">" + "<br>" + response.items["2"].name + "</div>");
         });
 
+        // Show Product Options Title
+        $('#productsOptionTitle').removeClass('hideOptions');
+
         // Pulling AJAX request
         $.ajax({
             url: queryURLWiki
         }).done(function (response) {
             console.log(response);
+
 
             /*// Transfer content to HTML
             $(".productOptions1").html("<img src=" + "'" + response.query.pages[7089].images["0"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);
@@ -139,8 +146,9 @@ $(document).ready (function() {
     // When the user clicks on a product options 1, it will append to the productSelected class
     $(document).on("click", ".divproduct", function(){
 
+        $('#dropdownbuttondisplay').removeClass('dropdownbuttonhide');
         $(".productSelected").append(this);
-        $('#addButton').removeClass('hidden');
+        $('#selectedOptionTitle').removeClass('hideSelected');
         // variable to store 'this'
         var that = this;
         //console.log(this);
