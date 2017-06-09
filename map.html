@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <title>Starter Template - Materialize</title>
@@ -10,141 +10,122 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-</head>
+  </head>
 
-<body>
+  <body>
 
-<!-- Nav BAR -->
-<nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Listage</a>
+    <!-- Nav BAR -->
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Listage</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="index.html">Lists</a></li>
-            <li><a href="recipes.html">Recipe</a></li>
-            <li><a href="map.html">Locate</a></li>
+          <li><a href="index.html">Lists</a></li>
+          <li><a href="recipes.html">Recipe</a></li>
+          <li><a href="map.html">Locate</a></li>
         </ul>
 
         <!-- mobile responsive -->
         <ul id="nav-mobile" class="side-nav">
-            <li><a href="index.html">Lists</a></li>
-            <li><a href="recipes.html">Recipe</a></li>
-            <li><a href="map.html">Locate</a></li>
+          <li><a href="index.html">Lists</a></li>
+          <li><a href="recipes.html">Recipe</a></li>
+          <li><a href="map.html">Locate</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<!-- Header/Jumbotron -->
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
+    <!-- Header/Jumbotron -->
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
         <br><br>
         <h1 class="header center blue-text">Turn google maps <br> into your location.</h1>
         <div class="row center">
-            <h5 class="header col s12 light">Keep grocery stores close with maps</h5>
+          <h5 class="header col s12 light">Keep grocery stores close with maps</h5>
         </div>
         <div class="row center">
-            <a href="" id="download-button" class="btn-large waves-effect waves-light red">Get Started</a>
+          <a href="" id="download-button" class="btn-large waves-effect waves-light red">Get Started</a>
         </div>
         <br><br>
-    </div>
-</div>
-
-<!-- search -->
-<div class="container">
-    <div class="sw">
-        <form>
-            <input type="search" class="userInput" placeholder="Search for product..." />
-            <button class="go searchForm"><span class="entypo-search"></span>Submit</button>
-            <a href="#" class="logo" title="GMRUI"></a>
-        </form>
+      </div>
     </div>
 
-    <!--   Product Section   -->
-    <div class="container">
-        <div class="section">
-            <div class="row">
-                <div class="col s12 m4 productOptions productOptions1">
-                    <p class="light">Product 1</p>
-                </div>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script>
 
-                <div class="col s12 m4 productOptions productOptions2">
-                    <p class="light">Product 2</p>
-                </div>
+    <div id="map_div" style="height: 400px;"></div>
 
-                <div class="col s12 m4 productOptions productOptions3">
-                    <p class="light">Product 3</p>
-                </div>
+    <script type="text/javascript">
+      /*
+       * declare map as a global variable
+       */
+      var map;
 
-            </div>
-            <!--end of Product row -->
+      /*
+       * use google maps api built-in mechanism to attach dom events
+       */
+      google.maps.event.addDomListener(window, "load", function() {
 
-            <!-- selected product -->
-            <div class="container">
-                <div class="section">
-                    <div class="row">
-                        <div class="col s12 m6 productSelected">
-                            <p class="light">Selected Product 1</p>
-                        </div>
+        /*
+         * create map
+         */
+        var map = new google.maps.Map(document.getElementById("map_div"), {
+          center: new google.maps.LatLng(33.808678, -117.918921),
+          zoom: 14,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
 
-                        <div class="col s12 m6 addTime">
-                            <p class="light">Javascript Time</p>
-                        </div>
+        /*
+         * create infowindow (which will be used by markers)
+         */
+        var infoWindow = new google.maps.InfoWindow();
 
-                        <!-- Append List -->
-                        <div class="container">
-                            <div class="section">
-                                <div class="row">
-                                    <div class="col s12 m4 newProduct">
-                                        <p class="light">Tide</p>
-                                    </div>
+        /*
+         * marker creater function (acts as a closure for html parameter)
+         */
+        function createMarker(options, html) {
+          var marker = new google.maps.Marker(options);
+          if (html) {
+            google.maps.event.addListener(marker, "click", function() {
+              infoWindow.setContent(html);
+              infoWindow.open(options.map, this);
+            });
+          }
+          return marker;
+        }
 
-                                    <div class="col s12 m4 newProduct">
-                                        <p class="light">Apples</p>
-                                    </div>
+        /*
+         * add markers to map
+         */
+        var marker0 = createMarker({
+          position: new google.maps.LatLng(33.808678, -117.918921),
+          map: map,
+          icon: "http://1.bp.blogspot.com/_GZzKwf6g1o8/S6xwK6CSghI/AAAAAAAAA98/_iA3r4Ehclk/s1600/marker-green.png"
+        }, "<h1>Marker 0</h1><p>This is the home marker.</p>");
 
-                                    <div class="col s12 m4 newProduct">
-                                        <p class="light">Cheese</p>
-                                    </div>
+        var marker1 = createMarker({
+          position: new google.maps.LatLng(33.818038, -117.928492),
+          map: map
+        }, "<h1>Marker 1</h1><p>This is marker 1</p>");
 
-                                </div>
-
-
-                            </div>
-                            <!-- last div-->
-
-
-
-
-
-
-
-
-
-                            <!--
-
-                                              &lt;!&ndash;  Scripts&ndash;&gt;
-                                              <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-                                              <script src="assets/javascript/materialize.js"></script>
-                                              <script src="assets/javascript/init.js"></script>
-                            -->
-
-</body>
-
-</html>
-
-</footer>
+        var marker2 = createMarker({
+          position: new google.maps.LatLng(33.803333, -117.915278),
+          map: map
+        }, "<h1>Marker 2</h1><p>This is marker 2</p>");
+      });
+    </script>
 
 
-<!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="assets/javascript/materialize.js"></script>
-<script src="assets/javascript/init.js"></script>
-<!--
+    <!--  Scripts-->
+
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="assets/javascript/materialize.js"></script>
+    <script src="assets/javascript/init.js"></script>
+    <!--
 <script type="text/javascript" src="assets/javascript/list.js"></script>
 -->
-<script type="text/javascript" src="assets/javascript/map.js"></script>
+    <script type="text/javascript" src="assets/javascript/map.js"></script>
 
+    </script>
 
-
-</body>
+  </body>
 
 </html>
