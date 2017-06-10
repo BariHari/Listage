@@ -86,6 +86,9 @@ API KEY: 3xy3dz4kywkwwkkxtjsqv9fj*/
 $(document).ready (function() {
     console.log("ready");
 
+    // Global Variables
+    var $productSelected = $(".productSelected"), productSelected;
+
     $("#download-button").on("click", function(){
             event.preventDefault();
             console.log(this);
@@ -179,24 +182,46 @@ $(document).ready (function() {
         $("#timer1").on("click", function(){
             var timeLeft = 3;
             var timerId = setInterval(countdown, 1000);
+            // if statement where item is set in local storage
+
+            if (window.localStorage) {
+
+                /*productSelected = window.localStorage.getItem('productSelected');
+
+                if (typeof productSelected === 'object') {
+
+                    productSelected = 0;
+
+                }*/
+
+                productSelected++;
+
+                window.localStorage.setItem('productSelected', productSelected);
+
+
+                $productSelected.html(productSelected);
+
+
+            }
+
 
             function countdown() {
-                if (timeLeft === 0) {
-                    clearTimeout(timerId);
-                    $("#listItems").append(that);
-                    $('#addedGroceryTitle').removeClass('hideGrocery');
-                    //console.log(this);
+                    if (timeLeft === 0) {
+                        clearTimeout(timerId);
+                        $("#listItems").append(that);
+                        $('#addedGroceryTitle').removeClass('hideGrocery');
+                        //console.log(this);
 
-                    //});
+                        //});
 
-                } else {
-                    span = document.getElementById("timer");
-                    timeLeft--;
-                    span.innerHTML = timeLeft;
-                    console.log(timeLeft);
-                }
+                    } else {
+                        span = document.getElementById("timer");
+                        timeLeft--;
+                        span.innerHTML = timeLeft;
+                        console.log(timeLeft);
+                    }
             }
-        })
+        });
 
 
         $("#timer2").on("click", function(){
@@ -209,6 +234,7 @@ $(document).ready (function() {
                     clearTimeout(timerId);
                     $("#listItems").append(that);
                     $('#addedGroceryTitle').removeClass('hideGrocery');
+                    // if statement where we get itemm when time left === 0
                     //console.log(this);
 
                     //});
@@ -220,7 +246,7 @@ $(document).ready (function() {
                     console.log(timeLeft);
                 }
             }
-        })
+        });
 
 
 
