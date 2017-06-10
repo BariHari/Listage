@@ -86,6 +86,9 @@ API KEY: 3xy3dz4kywkwwkkxtjsqv9fj*/
 $(document).ready (function() {
     console.log("ready");
 
+    // Global Variables
+    var $productSelected = $(".productSelected"), productSelected;
+
     $("#download-button").on("click", function(){
             event.preventDefault();
             console.log(this);
@@ -180,6 +183,26 @@ $(document).ready (function() {
             var timeLeft = 3;
             var timerId = setInterval(countdown, 1000);
             // if statement where item is set in local storage
+
+            if (window.localStorage) {
+
+                /*productSelected = window.localStorage.getItem('productSelected');
+
+                if (typeof productSelected === 'object') {
+
+                    productSelected = 0;
+
+                }*/
+
+                productSelected++;
+
+                window.localStorage.setItem('productSelected', productSelected);
+
+
+                $productSelected.html(productSelected);
+
+
+            }
 
 
             function countdown() {
