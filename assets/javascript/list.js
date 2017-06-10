@@ -220,7 +220,7 @@ $(document).ready (function() {
                     console.log(timeLeft);
                 }
             }
-        })
+        });
 
 
 
