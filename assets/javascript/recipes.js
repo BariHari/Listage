@@ -82,36 +82,31 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 
-// Document ready function
-$(document).ready (function() {
-    console.log("ready");
 
+$(".searchForm").on("click", function(){
 
-    $(".searchForm").on("click", function(){
+	event.preventDefault();
 
-    	event.preventDefault();
+	var recipeSearch = $(".userInput").val();
+	var queryURL = "https://cors-bcs.herokuapp.com/https://food2fork.com/api/search?key=404bedc61bdcf36a33ddcac7ad6058ae&q=" + recipeSearch;
+	console.log(recipeSearch);
+	console.log(queryURL);
 
-    	var recipeSearch = $(".userInput").val();
-    	var queryURL = "https://cors-bcs.herokuapp.com/https://food2fork.com/api/search?key=404bedc61bdcf36a33ddcac7ad6058ae&q=" + recipeSearch;
-    	console.log(recipeSearch);
-    	console.log(queryURL);
+	$.ajax({
+		url: queryURL
 
-    	$.ajax({
-    		url: queryURL
+	}).done(function (response) {
+		console.log(response);
 
-    	}).done(function (response) {
-    		console.log(response);
+		$(".recipeOptions1").html("<img src=" + "'" + response.recipes["1"].image_url + "'" + ">" + "<br>" + response.recipes["1"].title);
+		$(".recipeOptions2").html("<img src=" + "'" + response.recipes["2"].image_url + "'" + ">" + "<br>" + response.recipes["2"].title);
+		$(".recipeOptions3").html("<img src=" + "'" + response.recipes["3"].image_url + "'" + ">" + "<br>" + response.recipes["3"].title);
 
-    		$(".recipeOptions1").html("<img src=" + "'" + response.recipes["1"].image_url + "'" + ">" + "<br>" + response.recipes["1"].title);
-    		$(".recipeOptions2").html("<img src=" + "'" + response.recipes["2"].image_url + "'" + ">" + "<br>" + response.recipes["2"].title);
-    		$(".recipeOptions3").html("<img src=" + "'" + response.recipes["3"].image_url + "'" + ">" + "<br>" + response.recipes["3"].title);
-
-    	})
-
-    })
-
+	})
 
 });
+
+
 
 
 

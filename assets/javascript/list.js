@@ -146,8 +146,6 @@ $(document).ready (function() {
         }).done(function (response) {
             console.log(response);
 
-
-
             /*// Transfer content to HTML
             $(".productOptions1").html("<img src=" + "'" + response.query.pages[7089].images["0"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);
             $(".productOptions2").html("<img src=" + "'" + response.query.pages[7089].images["1"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);
@@ -196,7 +194,7 @@ $(document).ready (function() {
                     console.log(timeLeft);
                 }
             }
-        })
+        });
 
 
         $("#timer2").on("click", function(){
@@ -220,7 +218,7 @@ $(document).ready (function() {
                     console.log(timeLeft);
                 }
             }
-        })
+        });
 
 
 
