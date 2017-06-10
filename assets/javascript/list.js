@@ -179,24 +179,26 @@ $(document).ready (function() {
         $("#timer1").on("click", function(){
             var timeLeft = 3;
             var timerId = setInterval(countdown, 1000);
+            // if statement where item is set in local storage
+
 
             function countdown() {
-                if (timeLeft === 0) {
-                    clearTimeout(timerId);
-                    $("#listItems").append(that);
-                    $('#addedGroceryTitle').removeClass('hideGrocery');
-                    //console.log(this);
+                    if (timeLeft === 0) {
+                        clearTimeout(timerId);
+                        $("#listItems").append(that);
+                        $('#addedGroceryTitle').removeClass('hideGrocery');
+                        //console.log(this);
 
-                    //});
+                        //});
 
-                } else {
-                    span = document.getElementById("timer");
-                    timeLeft--;
-                    span.innerHTML = timeLeft;
-                    console.log(timeLeft);
-                }
+                    } else {
+                        span = document.getElementById("timer");
+                        timeLeft--;
+                        span.innerHTML = timeLeft;
+                        console.log(timeLeft);
+                    }
             }
-        })
+        });
 
 
         $("#timer2").on("click", function(){
@@ -209,6 +211,7 @@ $(document).ready (function() {
                     clearTimeout(timerId);
                     $("#listItems").append(that);
                     $('#addedGroceryTitle').removeClass('hideGrocery');
+                    // if statement where we get itemm when time left === 0
                     //console.log(this);
 
                     //});

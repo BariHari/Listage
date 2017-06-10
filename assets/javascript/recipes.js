@@ -102,9 +102,9 @@ $(document).ready (function() {
     	}).done(function (response) {
     		console.log(response);
 
-    		$(".recipeOptions1").html("<img src=" + "'" + response.recipes["1"].image_url + "'" + ">" + "<br>" + response.recipes["1"].title);
-    		$(".recipeOptions2").html("<img src=" + "'" + response.recipes["2"].image_url + "'" + ">" + "<br>" + response.recipes["2"].title);
-    		$(".recipeOptions3").html("<img src=" + "'" + response.recipes["3"].image_url + "'" + ">" + "<br>" + response.recipes["3"].title);
+    		$(".recipeOptions").html("<img src=" + "'" + response.recipes.image_url + "'" + ">" + "<br>" + response.recipes.title);
+    		$(".recipeOptions").html("<img src=" + "'" + response.recipes.image_url + "'" + ">" + "<br>" + response.recipes.title);
+    		$(".recipeOptions").html("<img src=" + "'" + response.recipes.image_url + "'" + ">" + "<br>" + response.recipes.title);
 
     	})
 
