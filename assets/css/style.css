@@ -76,6 +76,18 @@
 	color: white;
 }
 
+form {
+    margin-top: 2em;
+}
+
+h5 {
+	text-align: center;
+}
+
+h3 {
+	text-align: center;
+}
+
 
 @media only screen and (max-width: 900px) {
 

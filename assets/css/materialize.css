@@ -4350,6 +4350,10 @@ nav ul.left {
   float: left;
 }
 
+.formsize {
+  font-size: 2em;
+}
+
 nav form {
   height: 100%;
 }
