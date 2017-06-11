@@ -643,6 +643,10 @@
   color: #304ffe !important;
 }
 
+.tealblue {
+  color: #00AFAF;
+}
+
 .blue {
   background-color: #2196F3 !important;
 }
@@ -2999,6 +3003,13 @@ td, th {
   table.responsive-table.bordered tbody tr {
     border-right: 1px solid #d0d0d0;
   }
+}
+
+.francois {
+  font-family: 'Francois One', sans-serif;
+}
+.opensans {
+  font-family: 'Open Sans', sans-serif;
 }
 
 .collection {

@@ -13,6 +13,7 @@
    height: auto; !important
  
 }
+
 .icon-block {
   padding: 0 15px;
 }
@@ -71,20 +72,27 @@
 	margin-left: 11px;
 }
 
+.miniheader {
+	color: white;
+}
 
 
 @media only screen and (max-width: 900px) {
+
 	#index-banner {
   background-image: url(../images/yellow_background.png);
-}
+	}
+
     h1 {
         text-align: center;
     }
+
     .row .col.s12 {
 	text-align: center;
 	}
-#download-button {
-	 margin:auto;
-  display:block;
+
+	#download-button {
+	margin:auto;
+  	display:block;
 	}
 }         
