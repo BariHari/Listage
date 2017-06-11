@@ -648,7 +648,7 @@
 }
 
 .blue-text {
-  color: #2196F3 !important;
+  color: #00AFAF !important;
 }
 
 .blue.lighten-5 {
@@ -2552,7 +2552,7 @@ ul:not(.browser-default) li {
 }
 
 a {
-  color: #039be5;
+  color: #000000;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -4204,7 +4204,7 @@ nav.nav-extended .nav-content {
 }
 
 nav a {
-  color: #fff;
+  color: #00000;
 }
 
 nav i,
@@ -4242,7 +4242,7 @@ nav .button-collapse i {
 
 nav .brand-logo {
   position: absolute;
-  color: #fff;
+  color: #000000;
   display: inline-block;
   font-size: 2.1rem;
   padding: 0;
@@ -4310,7 +4310,7 @@ nav ul li.active {
 nav ul a {
   transition: background-color .3s;
   font-size: 1rem;
-  color: #fff;
+  color: #000000;
   display: block;
   padding: 0 15px;
   cursor: pointer;

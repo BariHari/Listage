@@ -6,6 +6,13 @@
  * Made By MaterializeCSS.com
  */
 
+#index-banner {
+  background-image: url(../images/tide_background.png);
+  background-size: cover;
+  width: 100%; !important
+   height: auto; !important
+ 
+}
 .icon-block {
   padding: 0 15px;
 }
@@ -52,12 +59,32 @@
 	display: none;
 }
 
+.row .col.s12 {
+	text-align: left;
+}
+
+#download-button{
+	align-content: left;
+}
+
+#download-button {
+	margin-left: 11px;
+}
 
 
 
-
-
-
-
-
-
+@media only screen and (max-width: 900px) {
+	#index-banner {
+  background-image: url(../images/yellow_background.png);
+}
+    h1 {
+        text-align: center;
+    }
+    .row .col.s12 {
+	text-align: center;
+	}
+#download-button {
+	 margin:auto;
+  display:block;
+	}
+}         
