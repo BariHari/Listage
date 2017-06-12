@@ -112,7 +112,7 @@ $(document).ready (function() {
 
         //Animate scroll
         $('html,body').animate({
-        scrollTop: $("#listItems").offset().top},
+        scrollTop: $("#scrollmiddlesection").offset().top},
         'slow');
 
         // Prevent default browser settings
