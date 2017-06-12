@@ -64,17 +64,18 @@ $(document).ready (function() {
             for (let i = 0; i < response.items.length; i++) {
                 
 
-                var temp = response.items[i]
+                var temp = response.items[i];
                 var items = {
                     name: response.items.name,
                     mediumImage: response.items.mediumImage
+                };
             
 
             
             responses.push(items);
             responses = JSON.stringify(responses);
             localStorage.setItem(query,responses);
-    };
+
             }
             // Transfer content to HTML
             $(".productOptions1").html("<div class='divproduct'> <img src=" + response.items["0"].mediumImage + " class = proImage data-selected = " + response.items["0"].mediumImage + ">" + "<br>" + response.items["0"].name + "</div>");
