@@ -102,10 +102,15 @@ $(document).ready (function() {
     	}).done(function (response) {
     		console.log(response);
 
-    		$(".recipeOptions").html("<img src=" + "'" + response.recipes.image_url + "'" + ">" + "<br>" + response.recipes.title);
-    		$(".recipeOptions").html("<img src=" + "'" + response.recipes.image_url + "'" + ">" + "<br>" + response.recipes.title);
-    		$(".recipeOptions").html("<img src=" + "'" + response.recipes.image_url + "'" + ">" + "<br>" + response.recipes.title);
+            var res = JSON.parse(response);
 
+
+            /*$(".recipeOptions").html("<img src=" + "'" + response.recipes.image_url + "'" + ">" + "<br>" + response.recipes.title);
+            $(".recipeOptions").html("<img src=" + "'" + response.recipes.image_url + "'" + ">" + "<br>" + response.recipes.title);
+            $(".recipeOptions").html("<img src=" + "'" + response.recipes.image_url + "'" + ">" + "<br>" + response.recipes.title);
+*/
+            $(".recipeOptions").html(response.res);
+            console.log(res)
     	})
 
     })
