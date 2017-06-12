@@ -101,7 +101,7 @@ h3 {
 
 @media only screen and (max-width: 900px) {
 
-	#index-banner {
+	.headerpicture {
   background-image: url(../images/yellow_background.png);
 	}
 
