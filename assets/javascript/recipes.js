@@ -88,17 +88,17 @@ $(document).ready (function() {
 
 
     $(".searchForm").on("click", function(){
-
+        //Prevents default browser settings
     	event.preventDefault();
-
+        //Creates a variable for userinput
     	var recipeSearch = $(".userInput").val();
     	var queryURL = "https://cors-bcs.herokuapp.com/https://food2fork.com/api/search?key=404bedc61bdcf36a33ddcac7ad6058ae&q=" + recipeSearch;
     	console.log(recipeSearch);
     	console.log(queryURL);
-
+        //AJAX Request
     	$.ajax({
     		url: queryURL
-
+        //Response from request
     	}).done(function (response) {
     		console.log(response);
 

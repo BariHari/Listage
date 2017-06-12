@@ -172,7 +172,7 @@ $(document).ready (function() {
         scrollTop: $(".scrollsection").offset().top},
         'slow');
         
-        //The drop down buttons with the times will appear
+        //The drop down buttons with the time options will appear
         $('#dropdownbuttondisplay').removeClass('dropdownbuttonhide');
 
         //The product that was selected will append to the section where the user picks the time
