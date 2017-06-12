@@ -87,14 +87,20 @@ $(document).ready (function() {
     console.log("ready");
 
     // Global Variables
+    // Variable used for local Storage
     var $productSelected = $(".productSelected"), productSelected;
 
+
     $("#download-button").on("click", function(){
+
+            // Prevent default browser settings
             event.preventDefault();
             console.log(this);
+
+            // Showing the #listbody ID
             $('#listbody').removeClass('hide');
 
-            //Automatically scrolls
+            //Animate scroll
             $('html,body').animate({
             scrollTop: $(".searchbarscroll").offset().top},
             'slow');
@@ -104,24 +110,24 @@ $(document).ready (function() {
     // On click function for the search button
     $(".searchForm").on("click", function(){
 
-        //Automatically scrolls
+        //Animate scroll
         $('html,body').animate({
         scrollTop: $("#listItems").offset().top},
         'slow');
 
         // Prevent default browser settings
         event.preventDefault();
-
-        
-
         //console.log("search button working");
 
         // Creating variables to pull the query url from the user-input class
+
+        // Walmart API
         var productOptionsWal = $(".userInput").val();
         var queryURLWal = "https://cors-bcs.herokuapp.com/https://api.walmartlabs.com/v1/search?query=" + productOptionsWal + "&format=json&apiKey=3xy3dz4kywkwwkkxtjsqv9fj"; //&lsPublisherId={Your LinkShare Publisher Id}"
         console.log(productOptionsWal);
         console.log(queryURLWal);
 
+        // Wikipedia API
         var productOptionsWiki = $(".userInput").val();
         var queryURLWiki = "https://cors-bcs.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&prop=images&titles=" + productOptionsWiki;
         console.log(productOptionsWiki);
@@ -143,13 +149,11 @@ $(document).ready (function() {
         // Show Product Options Title
         $('#productsOptionTitle').removeClass('hideOptions');
 
-        // Pulling AJAX request
+        // Pulling AJAX request from Wikipedia API
         $.ajax({
             url: queryURLWiki
         }).done(function (response) {
             console.log(response);
-
-
 
             /*// Transfer content to HTML
             $(".productOptions1").html("<img src=" + "'" + response.query.pages[7089].images["0"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);
@@ -163,45 +167,49 @@ $(document).ready (function() {
     $(document).on("click", ".divproduct", function(){
 
 
-        //Automatically scrolls
+        //Animate scroll
         $('html,body').animate({
         scrollTop: $(".scrollsection").offset().top},
         'slow');
         
         //The drop down buttons with the times will appear
         $('#dropdownbuttondisplay').removeClass('dropdownbuttonhide');
+
         //The product that was selected will append to the section where the user picks the time
-        //"this" is referring to the .divproduct/the picture that was selected
+        //"this" is referring to the .divproduct/the picture that was
         $(".productSelected").append(this);
+
         //"What do you need?" title will appear
         $('#selectedOptionTitle').removeClass('hideSelected');
+
         // variable to store 'this'
         var that = this;
         //console.log(this);
 
+        // Countdown timer on click function from the drop down choice #1
         $("#timer1").on("click", function(){
             var timeLeft = 3;
             var timerId = setInterval(countdown, 1000);
-            // if statement where item is set in local storage
 
+            // if statement to determine if the browser has local storage
             if (window.localStorage) {
+
+                // show the product selected when the time runs out
+                productSelected++;
+
+                // set the item
+                window.localStorage.setItem('productSelected', productSelected);
+
+                // push it to html
+                $productSelected.html(productSelected);
 
                 /*productSelected = window.localStorage.getItem('productSelected');
 
-                if (typeof productSelected === 'object') {
+                 if (typeof productSelected === 'object') {
 
-                    productSelected = 0;
+                 productSelected = 0;
 
-                }*/
-
-                productSelected++;
-
-                window.localStorage.setItem('productSelected', productSelected);
-
-
-                $productSelected.html(productSelected);
-
-
+                 }*/
             }
 
 
@@ -223,7 +231,7 @@ $(document).ready (function() {
             }
         });
 
-
+        // Countdown timer on click function from the drop down choice #2
         $("#timer2").on("click", function(){
             var timeLeft = 7;
             var timerId = setInterval(countdown, 1000);
@@ -249,7 +257,7 @@ $(document).ready (function() {
         });
 
 
-
+        // Countdown timer on click function from the drop down choice #3
         $("#timer3").on("click", function(){
             var timeLeft = 10;
             var timerId = setInterval(countdown, 1000);
@@ -261,8 +269,7 @@ $(document).ready (function() {
                     $("#listItems").append(that);
                     $('#addedGroceryTitle').removeClass('hideGrocery');
                     //console.log(this);
-
-                    //});
+                    
 
                 } else {
                     span = document.getElementById("timer");
