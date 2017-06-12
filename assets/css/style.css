@@ -6,13 +6,23 @@
  * Made By MaterializeCSS.com
  */
 
-#index-banner {
+/*#index-banner {
   background-image: url(../images/tide_background.png);
   background-size: cover;
   width: 100%; !important
    height: auto; !important
  
+}*/
+
+.headerpicture {
+	  background-image: url(../images/tide_background.png);
+  background-size: cover;
+  width: 100%; !important
+   height: auto; !important
+
 }
+
+
 
 .icon-block {
   padding: 0 15px;
