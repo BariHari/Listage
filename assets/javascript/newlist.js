@@ -20,8 +20,6 @@ $(document).ready (function() {
 
     });
 
-    var userval = $(".userInput").val();
-
     // On click function for the search button
     $(".searchForm").on("click", function(){
 
@@ -36,17 +34,18 @@ $(document).ready (function() {
         // Creating variables to pull the query url from the user-input class
 
         // Walmart API
-        var queryURLWal = "https://cors-bcs.herokuapp.com/https://api.walmartlabs.com/v1/search?query=" + userval + "&format=json&apiKey=3xy3dz4kywkwwkkxtjsqv9fj"; //&lsPublisherId={Your LinkShare Publisher Id}"
+        var productOptionsWal = $(".userInput").val();
+        var queryURLWal = "https://cors-bcs.herokuapp.com/https://api.walmartlabs.com/v1/search?query=" + productOptionsWal + "&format=json&apiKey=3xy3dz4kywkwwkkxtjsqv9fj"; //&lsPublisherId={Your LinkShare Publisher Id}"
         console.log(queryURLWal);
 
         // Wikipedia API
-        var queryURLWiki = "https://cors-bcs.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&prop=images&titles=" + userval;
+        var productOptionsWiki = $(".userInput").val();
+        var queryURLWiki = "https://cors-bcs.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&prop=images&titles=" + productOptionsWiki;
         console.log(queryURLWiki);
 
-
-        console.log(queryURLWiki);
         var responses = [];
         var query = "groceries";
+        var userval = $(".userInput").val();
         var jsonparse = JSON.parse(localStorage.getItem("groceries"));
 
 
