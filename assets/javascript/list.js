@@ -134,6 +134,13 @@ $(document).ready (function() {
         console.log(productOptionsWiki);
         console.log(queryURLWiki);
 
+        // Variables
+
+        // Empty array to push the response objects into
+        var responses = [];
+        var query = "groceries";
+        var userval = $(".userInput").val();
+        var jsonparse = JSON.parse(localStorage.getItem("groceries"));
 
         // Pulling AJAX request from Walmart API
         $.ajax({
@@ -141,20 +148,91 @@ $(document).ready (function() {
         }).done(function (response) {
             console.log(response);
 
-            // Transfer content to HTML
+            /*// Transfer content to HTML
             $(".productOptions1").html("<div class='divproduct'> <img src=" + response.items["0"].mediumImage + " class = proImage data-selected = " + response.items["0"].mediumImage + ">" + "<br>" + response.items["0"].name + "</div>");
             $(".productOptions2").html("<div class='divproduct'> <img src=" + response.items["1"].mediumImage + " class = proImage data-selected = " + response.items["1"].mediumImage + ">" + "<br>" + response.items["1"].name + "</div>");
-            $(".productOptions3").html("<div class='divproduct'> <img src=" + response.items["2"].mediumImage + " class = proImage data-selected = " + response.items["2"].mediumImage + ">" + "<br>" + response.items["2"].name + "</div>");
+            $(".productOptions3").html("<div class='divproduct'> <img src=" + response.items["2"].mediumImage + " class = proImage data-selected = " + response.items["2"].mediumImage + ">" + "<br>" + response.items["2"].name + "</div>");*/
+
+        // Empty array to push the categories into for seperation
+        var categories = [];
+
+        console.log("THISREPONSEHERE",response);
+
+        // If statement where if the browser has local storage it will:
+        if (jsonparse) {
+
+            // for loop through the jsonparse variable
+            for (var i = 0; i < jsonparse.length; i++) {
+
+                // push it into the emoty arrays
+                categories.push(jsonparse[i].category);
+                responses.push(jsonparse[i]);
+            }
+        }
+
+        // Only appending if there's a new item
+        var reduced = Object.keys(categories.reduce((p,c) => (p[c] = true,p),{}));
+
+        // Filters out the same items
+        if (reduced.indexOf(userval) == -1) {
+
+            // For loop to go through the response array
+            for (var i = 0; i < response.items.length; i++) {
+
+                // Creating variables and objects to create the response output
+                var temp = response.items[i];
+                var items = {
+                    name: temp.name,
+                    mediumImage: temp.mediumImage,
+                    category: $(".userInput").val()
+                };
+
+                // pushing responses into the 'items' variable
+                responses.push(items);
+
+                // setting and stringifying the response
+                localStorage.setItem(query, JSON.stringify(responses));
+            }
+        }
+
+        // Transferring content into HTML
+        function createdivs(len) {
+
+            // Creating the div in html
+            var div = $("<div class='divproduct'>");
+
+            // Creating the img and class in html
+            var img = $("<img class='proImage'>");
+            // Giving the img an attribute
+            img.attr("src", response.items[len].mediumImage);
+            // appending the img to the div
+            div.append(img);
+
+            // Creating a p tag for the title of the product
+            var p = $("<p>");
+            p.text(response.items[len].name);
+            div.append(p);
+
+            // Appending the productoptions class to the div
+            $(".productOptions").append(div);
+        }
+
+        // Calling out the function
+        createdivs("0");
+        createdivs("1");
+        createdivs("2");
         });
+
+    });
 
         // Show Product Options Title
         $('#productsOptionTitle').removeClass('hideOptions');
 
         // Pulling AJAX request from Wikipedia API
-        $.ajax({
+        /*$.ajax({
             url: queryURLWiki
         }).done(function (response) {
-            console.log(response);
+            console.log(response);*/
 
             /*// Transfer content to HTML
             $(".productOptions1").html("<img src=" + "'" + response.query.pages[7089].images["0"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);
@@ -162,7 +240,7 @@ $(document).ready (function() {
             $(".productOptions3").html("<img src=" + "'" + response.query.pages[7089].images["2"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);*/
 
         });
-    });
+    //});
 
     // When the user clicks on a product options 1, it will append to the productSelected class
     $(document).on("click", ".divproduct", function(){
@@ -289,7 +367,7 @@ $(document).ready (function() {
     });
 
 
-});
+
 
 
     
