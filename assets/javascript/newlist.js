@@ -43,6 +43,9 @@ $(document).ready (function() {
         var queryURLWiki = "https://cors-bcs.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&prop=images&titles=" + productOptionsWiki;
         console.log(queryURLWiki);
 
+        // Variables
+
+        // Empty array to push the response objects into
         var responses = [];
         var query = "groceries";
         var userval = $(".userInput").val();
@@ -53,14 +56,19 @@ $(document).ready (function() {
         $.ajax({
             url: queryURLWal
         }).done(function (response) {
+
+            // Empty array to push the categories into for seperation
             var categories = [];
 
             console.log("THISREPONSEHERE",response);
 
+            // If statement where if the browser has local storage it will:
             if (jsonparse) {
 
+                // for loop through the jsonparse variable
                 for (var i = 0; i < jsonparse.length; i++) {
 
+                    // push it into the emoty arrays
                     categories.push(jsonparse[i].category);
                     responses.push(jsonparse[i]);
                 }
