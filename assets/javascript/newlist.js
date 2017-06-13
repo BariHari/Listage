@@ -3,11 +3,6 @@
 $(document).ready (function() {
     console.log("ready");
 
-    // Global Variables
-    // Variable used for local Storage
-    var $productSelected = $(".productSelected"), productSelected;
-    var $savelist = $(".savelist"), savelist;
-
 
     $("#download-button").on("click", function(){
 
@@ -37,7 +32,6 @@ $(document).ready (function() {
 
         // Prevent default browser settings
         event.preventDefault();
-        //console.log("search button working");
 
         // Creating variables to pull the query url from the user-input class
 
@@ -121,7 +115,7 @@ $(document).ready (function() {
                 $(".productOptions").append(div);
             }
 
-            // Calling out the function 
+            // Calling out the function
             createdivs("0");
             createdivs("1");
             createdivs("2");
@@ -138,11 +132,6 @@ $(document).ready (function() {
             url: queryURLWiki
         }).done(function (response) {
             //console.log(response);
-
-            /*// Transfer content to HTML
-            $(".productOptions1").html("<img src=" + "'" + response.query.pages[7089].images["0"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);
-            $(".productOptions2").html("<img src=" + "'" + response.query.pages[7089].images["1"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);
-            $(".productOptions3").html("<img src=" + "'" + response.query.pages[7089].images["2"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);*/
 
         });
     });
@@ -175,32 +164,6 @@ $(document).ready (function() {
             var timeLeft = 3;
             var timerId = setInterval(countdown, 1000);
 
-            // if statement to determine if the browser has local storage
-            // if (window.localStorage) {
-
-            //     // show the product selected when the time runs out
-            //     productSelected++;
-
-            //     // set the item
-            //     window.localStorage.setItem('productSelected', productSelected);
-
-            //     // push it to html
-            //     $productSelected.html(productSelected);
-
-            //     /*productSelected = window.localStorage.getItem('productSelected');
-
-            //      if (typeof productSelected === 'object') {
-
-            //      productSelected = 0;
-
-            //      }*/
-            // }
-                // if (window.localStorage) {
-                //     window.localStorage.setItem('savelist', savelist);
-                //     $savelist.html(savelist)
-                //     }
-
-
             function countdown() {
                     if (timeLeft === 0) {
                         clearTimeout(timerId);
@@ -230,10 +193,8 @@ $(document).ready (function() {
                     clearTimeout(timerId);
                     $("#listItems").append(that);
                     $('#addedGroceryTitle').removeClass('hideGrocery');
-                    // if statement where we get itemm when time left === 0
                     //console.log(this);
 
-                    //});
 
                 } else {
                     span = document.getElementById("timer");
