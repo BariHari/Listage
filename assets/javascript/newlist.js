@@ -25,6 +25,8 @@ $(document).ready (function() {
 
     });
 
+    var userval = $(".userInput").val();
+
     // On click function for the search button
     $(".searchForm").on("click", function(){
 
@@ -40,47 +42,92 @@ $(document).ready (function() {
         // Creating variables to pull the query url from the user-input class
 
         // Walmart API
-        var productOptionsWal = $(".userInput").val();
-        var queryURLWal = "https://cors-bcs.herokuapp.com/https://api.walmartlabs.com/v1/search?query=" + productOptionsWal + "&format=json&apiKey=3xy3dz4kywkwwkkxtjsqv9fj"; //&lsPublisherId={Your LinkShare Publisher Id}"
-        console.log(productOptionsWal);
+        var queryURLWal = "https://cors-bcs.herokuapp.com/https://api.walmartlabs.com/v1/search?query=" + userval + "&format=json&apiKey=3xy3dz4kywkwwkkxtjsqv9fj"; //&lsPublisherId={Your LinkShare Publisher Id}"
         console.log(queryURLWal);
 
         // Wikipedia API
-        var productOptionsWiki = $(".userInput").val();
-        var queryURLWiki = "https://cors-bcs.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&prop=images&titles=" + productOptionsWiki;
-        console.log(productOptionsWiki);
+        var queryURLWiki = "https://cors-bcs.herokuapp.com/https://en.wikipedia.org/w/api.php?action=query&format=json&prop=images&titles=" + userval;
         console.log(queryURLWiki);
 
 
+        console.log(queryURLWiki);
         var responses = [];
-        var query = "peanut butter";
+        var query = "groceries";
+        var jsonparse = JSON.parse(localStorage.getItem("groceries"));
+
 
         // Pulling AJAX request from Walmart API
         $.ajax({
             url: queryURLWal
         }).done(function (response) {
+            var categories = [];
+
             console.log("THISREPONSEHERE",response);
 
-            for (let i = 0; i < response.items.length; i++) {
-                
+            if (jsonparse) {
 
-                var temp = response.items[i]
-                var items = {
-                    name: response.items.name,
-                    mediumImage: response.items.mediumImage
-            
+                for (var i = 0; i < jsonparse.length; i++) {
 
-            
-            responses.push(items);
-            responses = JSON.stringify(responses);
-            localStorage.setItem(query,responses);
-    };
+                    categories.push(jsonparse[i].category);
+                    responses.push(jsonparse[i]);
+                }
             }
-            // Transfer content to HTML
-            $(".productOptions1").html("<div class='divproduct'> <img src=" + response.items["0"].mediumImage + " class = proImage data-selected = " + response.items["0"].mediumImage + ">" + "<br>" + response.items["0"].name + "</div>");
-            $(".productOptions2").html("<div class='divproduct'> <img src=" + response.items["1"].mediumImage + " class = proImage data-selected = " + response.items["1"].mediumImage + ">" + "<br>" + response.items["1"].name + "</div>");
-            $(".productOptions3").html("<div class='divproduct'> <img src=" + response.items["2"].mediumImage + " class = proImage data-selected = " + response.items["2"].mediumImage + ">" + "<br>" + response.items["2"].name + "</div>");
+
+            // Only appending if there's a new item
+            var reduced = Object.keys(categories.reduce((p,c) => (p[c] = true,p),{}));
+
+            // Filters out the same items
+            if (reduced.indexOf(userval) == -1) {
+
+                // For loop to go through the response array
+                for (var i = 0; i < response.items.length; i++) {
+
+                        // Creating variables and objects to create the response output
+                        var temp = response.items[i];
+                        var items = {
+                            name: temp.name,
+                            mediumImage: temp.mediumImage,
+                            category: $(".userInput").val()
+                        };
+
+                    // pushing responses into the 'items' variable
+                    responses.push(items);
+
+                    // setting and stringifying the response
+                    localStorage.setItem(query, JSON.stringify(responses));
+                }
+            }
+
+            // Transferring content into HTML
+            function createdivs(len) {
+
+                // Creating the div in html
+                var div = $("<div class='divproduct'>");
+
+                // Creating the img and class in html
+                var img = $("<img class='proImage'>");
+
+                // Giving the img an attribute
+                img.attr("src", response.items[len].mediumImage);
+                // appending the img to the div
+                div.append(img);
+
+                // Creating a p tag for the title of the product
+                var p = $("<p>");
+                p.text(response.items[len].name);
+                div.append(p);
+
+                // Appending the productoptions class to the div
+                $(".productOptions").append(div);
+            }
+
+            // Calling out the function 
+            createdivs("0");
+            createdivs("1");
+            createdivs("2");
         });
+
+
 
         // Show Product Options Title
         $('#productsOptionTitle').removeClass('hideOptions');
@@ -90,7 +137,7 @@ $(document).ready (function() {
         $.ajax({
             url: queryURLWiki
         }).done(function (response) {
-            console.log(response);
+            //console.log(response);
 
             /*// Transfer content to HTML
             $(".productOptions1").html("<img src=" + "'" + response.query.pages[7089].images["0"].title + "'"+ ">" + "<br>" + response.query.pages[7089].title);
