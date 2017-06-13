@@ -1,5 +1,6 @@
 
 // Document ready function
+// testing
 $(document).ready (function() {
     console.log("ready");
 
