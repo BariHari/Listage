@@ -118,13 +118,13 @@ $(document).ready (function() {
                 div.append(p);
 
                 // Appending the productoptions class to the div
-                $(".productOptions").append(div);
+                //$(".productOptions").append(div);
             }
 
             // Calling out the function
-            createdivs("0");
-            createdivs("1");
-            createdivs("2");
+            createdivs;
+            /*createdivs("1");
+            createdivs("2");*/
         });
 
 
@@ -165,7 +165,11 @@ $(document).ready (function() {
         var that = this;
         //console.log(this);
 
-        // Countdown timer on click function from the drop down choice #1
+        $("#listItems").append(that);
+        $('#addedGroceryTitle').removeClass('hideGrocery');
+
+
+        /*// Countdown timer on click function from the drop down choice #1
         $("#timer1").on("click", function(){
             var timeLeft = 3;
             var timerId = setInterval(countdown, 1000);
@@ -233,7 +237,7 @@ $(document).ready (function() {
                     console.log(timeLeft);
                 }
             }
-        })
+        })*/
 
 
     });
