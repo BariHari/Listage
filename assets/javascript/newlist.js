@@ -100,7 +100,6 @@ $(document).ready (function() {
 
                 // Creating the img and class in html
                 var img = $("<img class='proImage'>");
-
                 // Giving the img an attribute
                 img.attr("src", response.items[len].mediumImage);
                 // appending the img to the div
