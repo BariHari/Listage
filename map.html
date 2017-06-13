@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -10,6 +10,26 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <title>Place searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+    </style>
   </head>
 
   <body>
@@ -45,31 +65,14 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script>
+   <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script>-->
 
     <!-- begin -->
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdI1jD1TLTy0vLHoo8TZL1YWVqqx09G6w&libraries=places&callback=initMap" async defer></script>
 
-    <head>
-      <title>Place searches</title>
-      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-      <meta charset="utf-8">
-      <style>
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
 
-        #map {
-          height: 100%;
-        }
-        /* Optional: Makes the sample page fill the window. */
-
-        html,
-        body {
-          height: 100%;
-          margin: 0;
-          padding: 0;
-        }
-      </style>
-      <script>
+    <script>
         // This example requires the Places library. Include the libraries=places
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -85,6 +88,7 @@
             center: pyrmont,
             zoom: 15
           });
+
           infowindow = new google.maps.InfoWindow();
           var service = new google.maps.places.PlacesService(map);
           service.nearbySearch({
@@ -93,8 +97,6 @@
             type: ['grocery_or_supermarket']
           }, callback);
         }
-
-        initMap();
 
         function callback(results, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -115,12 +117,10 @@
             infowindow.open(map, this);
           });
         }
-      </script>
-    </head>
+    </script>
 
-    <body>
-      <div id="map"></div>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdI1jD1TLTy0vLHoo8TZL1YWVqqx09G6w&libraries=places&callback=initMap" async defer></script>
+
+
 
 
 
@@ -133,9 +133,6 @@
       <!--
 <script type="text/javascript" src="assets/javascript/list.js"></script>
 -->
-      <script type="text/javascript" src="assets/javascript/map.js"></script>
-
-      </script>
 
     </body>
 
