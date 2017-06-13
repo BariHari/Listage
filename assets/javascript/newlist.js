@@ -106,7 +106,9 @@ $(document).ready (function() {
                 p.text(response.items[len].name);
                 div.append(p);
 
-                $(".productOptions").append(div);
+                $(".productOptions1").append(div);
+                $(".productOptions2").append(div);
+                $(".productOptions3").append(div);
 
             }
 
