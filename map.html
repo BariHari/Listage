@@ -80,18 +80,18 @@
         var infowindow;
 
         function initMap() {
-          var pyrmont = {
+          var orlando = {
             lat: 28.538335,
             lng: -81.379236
           };
           map = new google.maps.Map(document.getElementById('map'), {
-            center: pyrmont,
+            center: orlando,
             zoom: 15
           });
           infowindow = new google.maps.InfoWindow();
           var service = new google.maps.places.PlacesService(map);
           service.nearbySearch({
-            location: pyrmont,
+            location: orlando,
             radius: 10 00,
             type: ['grocery_or_supermarket']
           }, callback);
