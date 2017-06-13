@@ -76,11 +76,13 @@ $(document).ready (function() {
             // Only appending if there's a new item
             var reduced = Object.keys(categories.reduce((p,c) => (p[c] = true,p),{}));
 
-
+            // Filters out the same items
             if (reduced.indexOf(userval) == -1) {
 
+                // For loop to go through the response array
                 for (var i = 0; i < response.items.length; i++) {
 
+                        // Creating variables and objects to create the response output
                         var temp = response.items[i];
                         var items = {
                             name: temp.name,
@@ -88,7 +90,10 @@ $(document).ready (function() {
                             category: $(".userInput").val()
                         };
 
+                    // pushing responses into the 'items' variable
                     responses.push(items);
+
+                    // setting and stringifying the response
                     localStorage.setItem(query, JSON.stringify(responses));
                 }
             }
@@ -96,22 +101,27 @@ $(document).ready (function() {
             // Transferring content into HTML
             function createdivs(len) {
 
+                // Creating the div in html
                 var div = $("<div class='divproduct'>");
 
+                // Creating the img and class in html
                 var img = $("<img class='proImage'>");
+
+                // Giving the img an attribute
                 img.attr("src", response.items[len].mediumImage);
+                // appending the img to the div
                 div.append(img);
 
+                // Creating a p tag for the title of the product
                 var p = $("<p>");
                 p.text(response.items[len].name);
                 div.append(p);
 
-                $(".productOptions1").append(div);
-                $(".productOptions2").append(div);
-                $(".productOptions3").append(div);
-
+                // Appending the productoptions class to the div
+                $(".productOptions").append(div);
             }
 
+            // Calling out the function 
             createdivs("0");
             createdivs("1");
             createdivs("2");
