@@ -2,7 +2,7 @@
 
 ### This was the first group project for the UCF Coding Bootcamp.
 
-![Watch our presentation here!](https://github.com/BariHari/Listage/blob/master/Screen%20Shot%202017-07-30%20at%209.03.03%20PM.png)(https://www.youtube.com/watch?v=ppSwEJAMPfs&feature=youtu.be)
+* [Watch our presentation here!](https://www.youtube.com/watch?v=ppSwEJAMPfs&feature=youtu.be)
 
 ### Technologies used:
 
