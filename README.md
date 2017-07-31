@@ -23,7 +23,6 @@
 * Saleena Beharry (Team Leader)
 * Melanie De La Paz
 * Sakina Shivji
-* Connor Chase
 
 ### Our Idea:
 
