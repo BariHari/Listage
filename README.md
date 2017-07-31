@@ -2,7 +2,7 @@
 
 ### This was the first group project for the UCF Coding Bootcamp.
 
-![Presentation](https://www.youtube.com/watch?v=ppSwEJAMPfs&feature=youtu.be)
+![Watch our presentation here!](https://www.youtube.com/watch?v=ppSwEJAMPfs&feature=youtu.be)
 
 ### Technologies used:
 
